@@ -1,6 +1,7 @@
 package com.winkcoo.medx.api;
 
 
+import com.google.gson.JsonElement;
 import com.winkcoo.medx.model.AllCollectionWithdraModel;
 import com.winkcoo.medx.model.AmbulanceModel;
 import com.winkcoo.medx.model.AppointmentAddResponse;
@@ -99,7 +100,7 @@ public interface ApiInterface {
                                        @Field("newPassword") String newPassword);
 
     @POST("send")
-    Call<NotificationResponse> newmsg(@Header("Authorization") String s, @Body NotiModel model);
+    Call<JsonElement> newmsg(@Header("Authorization") String s, @Body NotiModel model);
 
     @FormUrlEncoded
     @POST("fetchuserByEmailorPhone")

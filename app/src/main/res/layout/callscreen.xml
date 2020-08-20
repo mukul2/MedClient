@@ -124,47 +124,54 @@
         <RelativeLayout
             android:id="@+id/bottomPanel"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="05dp"
             android:layout_height="100dp">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:id="@+id/cardhang"
+                app:cardBackgroundColor="@android:color/holo_red_dark"
+
                 android:layout_centerInParent="true"
-                android:src="#D10000" />
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Hang up"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/hangupButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
 
 
-                android:background="@drawable/call_cut"
-                app:tint="@android:color/white" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="05dp"
             android:layout_height="100dp">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:id="@+id/cardSwitch"
+                app:cardBackgroundColor="@android:color/white"
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
                 android:layout_centerInParent="true"
-                android:src="#ffffff" />
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Switch Camera"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/switcheCamera"
-                android:layout_width="30dp"
-                android:layout_height="35dp"
-                android:layout_centerInParent="true"
 
-                android:background="@drawable/switch_camera" />
+
         </RelativeLayout>
 
     </LinearLayout>

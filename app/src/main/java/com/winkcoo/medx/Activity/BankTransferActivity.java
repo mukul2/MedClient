@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.google.gson.JsonElement;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.Utils.MyProgressBar;
 import com.winkcoo.medx.api.Api;
 import com.winkcoo.medx.api.ApiListener;
 import com.winkcoo.medx.model.AppointmentAddResponse;
+import com.winkcoo.medx.model.NotificationResponse;
 import com.winkcoo.medx.model.StatusMessage;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -128,7 +130,7 @@ public class BankTransferActivity extends BaseActivity {
         ApiListener.basicApiListener listener = new ApiListener.basicApiListener() {
             @Override
             public void onBasicSuccess(StatusMessage response) {
-                Toast.makeText(context, response.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "ccc "+response.getMessage(), Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(getBaseContext(), PatientHomeActivity.class);
                 i.putExtra("paymentInfo", payID);
@@ -139,8 +141,21 @@ public class BankTransferActivity extends BaseActivity {
                 Log.i("mkl","goint to hit  notie");
                 Log.i("mkl","noti 11");
 
-                Api.getInstance().appNotification("admin",USER_NAME,"New Pending Payment","pending_payment",null,"admin");
-                startActivity(i);
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+                       Toast.makeText(context, ""+status.toString(), Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                        finishAffinity();
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                      //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                //startActivity(i);
                 //finishAffinity();
                 MyProgressBar.dismiss();
             }
@@ -162,7 +177,7 @@ public class BankTransferActivity extends BaseActivity {
             Api.getInstance().add_payment_info_only_for_chamber_appoiontment(TOKEN, c_m_b(USER_ID), c_m_b("" + doc_id), c_m_b(amount), c_m_b("0"), c_m_b("Chamber Appointment"), c_m_b(payID), c_m_b(chamberApID), photo, listener);
 
         } else {
-            Api.getInstance().add_payment_info_only_for_chamber_appoiontment(TOKEN, c_m_b(USER_ID), c_m_b("" + doc_id), c_m_b(amount), c_m_b("0"), c_m_b("Chamber Appointment"), c_m_b(payID), c_m_b(chamberApID), photo, listener);
+            Api.getInstance().add_payment_info_only_for_chamber_appoiontment(TOKEN, c_m_b(USER_ID), c_m_b("" + doc_id), c_m_b(amount), c_m_b("0"), c_m_b("Chamber Appointment"), c_m_b(payID), c_m_b(chamberApID), null, listener);
 
         }
 
@@ -232,8 +247,27 @@ public class BankTransferActivity extends BaseActivity {
             public void onBasicSuccess(StatusMessage response) {
                 MyProgressBar.dismiss();
                 Toast.makeText(context, response.getMessage(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(context, PatientHomeActivity.class));
-                finishAffinity();
+
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+                        Toast.makeText(context, ""+status.toString(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(context, PatientHomeActivity.class));
+                        finishAffinity();
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
+
+
             }
 
             @Override
@@ -343,13 +377,25 @@ public class BankTransferActivity extends BaseActivity {
                 MyProgressBar.dismiss();
                 Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(context, ChatActivityCommon.class);
-                i.putExtra("partner_id", "" + NOW_SHOWING_ONLINE_DOC.getId());
-                i.putExtra("partner_name", NOW_SHOWING_ONLINE_DOC.getName());
-                i.putExtra("partner_photo", NOW_SHOWING_ONLINE_DOC.getPhoto());
-                i.putExtra("initMessage", amount + CURRENCY_USD_SIGN + " has been paid for Chat service");
-                context.startActivity(i);
-                finish();
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+                        Intent i = new Intent(context, ChatActivityCommon.class);
+                        i.putExtra("partner_id", "" + NOW_SHOWING_ONLINE_DOC.getId());
+                        i.putExtra("partner_name", NOW_SHOWING_ONLINE_DOC.getName());
+                        i.putExtra("partner_photo", NOW_SHOWING_ONLINE_DOC.getPhoto());
+                        i.putExtra("initMessage", amount + CURRENCY_USD_SIGN + " has been paid for Chat service");
+                        context.startActivity(i);
+                        finish();
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
 
             }
@@ -389,6 +435,21 @@ public class BankTransferActivity extends BaseActivity {
                 i.putExtra("paypal_id", response.getMessage());
                 //paymentInfo
                 startActivity(i);
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -413,6 +474,19 @@ public class BankTransferActivity extends BaseActivity {
 
                 startActivity(new Intent(context, PatientHomeActivity.class));
                 finishAffinity();
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -465,6 +539,20 @@ public class BankTransferActivity extends BaseActivity {
                 intent.putExtra("paypal_id", response.getMessage());
 
                 context.startActivity(intent);
+
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override

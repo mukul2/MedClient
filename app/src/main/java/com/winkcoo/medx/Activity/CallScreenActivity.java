@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.bumptech.glide.Glide;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.Utils.AudioPlayer;
@@ -53,7 +55,8 @@ public class CallScreenActivity extends VoiceCallBaseActivity {
     boolean mToggleVideoViewPositions = false;
     ImageView partnerPHOTO;
     Context context = this;
-    ImageView switcheCamera, loudSpeaker;
+    ImageView  loudSpeaker;
+    CardView switcheCamera;
 
     int LOUD_SPEAKER = 0;
     int MINI_SPEAKER = 1;
@@ -96,8 +99,8 @@ public class CallScreenActivity extends VoiceCallBaseActivity {
         mCallState = findViewById(R.id.callState);
         partnerPHOTO = findViewById(R.id.partnerPHOTO);
         loudSpeaker = findViewById(R.id.loudSpeaker);
-        switcheCamera = findViewById(R.id.switcheCamera);
-        ImageView endCallButton = findViewById(R.id.hangupButton);
+        switcheCamera = findViewById(R.id.cardSwitch);
+        CardView endCallButton = findViewById(R.id.cardhang);
 
         endCallButton.setOnClickListener(new OnClickListener() {
             @Override

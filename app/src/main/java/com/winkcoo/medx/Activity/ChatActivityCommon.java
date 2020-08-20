@@ -181,7 +181,7 @@ public class ChatActivityCommon extends AppCompatActivity {
                     databaseReference.child(CLIEND_ID).child("lastChatHistory").child(USER_ID).child(String.valueOf(partner_id)).setValue(chatModelFullBody);
                     databaseReference.child(CLIEND_ID).child("lastChatHistory").child(String.valueOf(partner_id)).child(USER_ID).setValue(chatModelFullBody);
 
-                    Api.getInstance().appNotification(String.valueOf(partner_id),partner_name,msg,"chat",PHOTO_BASE+partner_photo,"not_matter");
+                   // Api.getInstance().appNotification(String.valueOf(partner_id),partner_name,msg,"chat",PHOTO_BASE+partner_photo,"not_matter");
 
 
                 }
@@ -228,7 +228,7 @@ public class ChatActivityCommon extends AppCompatActivity {
                                 databaseReference.child(CLIEND_ID).child("lastChatHistory").child(USER_ID).child(String.valueOf(partner_id)).setValue(chatModelFullBody);
                                 databaseReference.child(CLIEND_ID).child("lastChatHistory").child(String.valueOf(partner_id)).child(USER_ID).setValue(chatModelFullBody);
 
-                                Api.getInstance().appNotification(String.valueOf(partner_id),partner_name,"Image sent","chat",PHOTO_BASE+partner_photo,"not_matter");
+                              //  Api.getInstance().appNotification(String.valueOf(partner_id),partner_name,"Image sent","chat",PHOTO_BASE+partner_photo,"not_matter");
 
 
                             }

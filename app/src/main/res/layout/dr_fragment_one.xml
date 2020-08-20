@@ -7,14 +7,13 @@
     android:id="@+id/drawer_layout"
 
     android:fitsSystemWindows="false"
-    tools:openDrawer="start"
-    android:background="#ADD8E6"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
 
-        android:background="#ADD8E6"
+        android:background="#ffffff"
         android:layout_height="match_parent">
 
 
@@ -30,7 +29,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#FFB6C1">
+                android:background="#FFFFFF">
 
                 <com.winkcoo.medx.Utils.CustomDrawerButton
                     android:id="@+id/customDrawer"
@@ -40,7 +39,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="13dp"
                     android:padding="6dp"
-                    android:background="#ADD8E6"
                     android:src="@drawable/menu_white"
                     android:tint="@color/colorPrimary" />
 
@@ -104,7 +102,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:paddingTop="00dp"
-            android:background="#FFB6C1"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <LinearLayout

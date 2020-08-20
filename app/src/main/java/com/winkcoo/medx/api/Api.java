@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.JsonElement;
 import com.winkcoo.medx.Utils.MyDialog;
 import com.winkcoo.medx.model.AllCollectionWithdraModel;
 import com.winkcoo.medx.model.AmbulanceModel;
@@ -79,7 +80,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Api {
     // String fcmKey = "key=AAAA2oWVj0U:APA91bGsqOhHgOWsDUvEMnVSMVeWBy0b0roNJp6WZ7F-jGjsZzSaJtM8_vw5qkcjnRRN9EkkloHk1krFbaiCqKF3phstTFDU_-qxSJMudUS138huXGhugAyO0NXvSJT0y4Ldf9eIQUjQ";
    // String fcmKey = "key=AAAA0EpRwPY:APA91bHBbBup11jcpJ65yZKqUqkUK5IPDUN9O51ade_qcoFKZdqyUuiK07v3mFSUmrA2ZAEP1M0zV09a794SZPOlmvbvDAOHN5cNdKNst0aCMq4WJIKbhDMWPK0ks-obO7rUd_vgTGIn";
-    String fcmKey = "AAAACS8SI2g:APA91bEu30-Q5X5SiFaAq7H4ZTlkbG-8L3piQfZsY-6DoAC9gR5jjejeIIaHa264PY_j_QSiaN3KyY1ck0TD4XNK-BmIT6UCWt_LT4pHkzs-lwfbyisnZo1abSUj4UO9UyDu3kaGUOvN";
+    String fcmKey = "key=AAAACS8SI2g:APA91bEu30-Q5X5SiFaAq7H4ZTlkbG-8L3piQfZsY-6DoAC9gR5jjejeIIaHa264PY_j_QSiaN3KyY1ck0TD4XNK-BmIT6UCWt_LT4pHkzs-lwfbyisnZo1abSUj4UO9UyDu3kaGUOvN";
 
     private static Api dataManager = null;
     public static String ERROR_MSG = "Network Error.Try again";
@@ -93,11 +94,11 @@ public class Api {
         return dataManager;
     }
 
-    public void appNotification(String targetuser, String title, String body, String intent, String image, String targetUserType) {
+    public void appNotification(String targetuser, String title, String body, String intent, String image, String targetUserType, final ApiListener.NotificationSentListener listener) {
         String recepent = "/topics/" + targetuser;
 
 
-        Data data = new Data(title, body, intent, image, targetUserType);
+        Data data = new Data(title, body, intent, image,targetUserType);
         NotiModel notificationModel = new NotiModel(recepent, data);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://fcm.googleapis.com/fcm/")
@@ -105,15 +106,21 @@ public class Api {
                 .build();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        apiInterface.newmsg(fcmKey, notificationModel).enqueue(new Callback<NotificationResponse>() {
+        apiInterface.newmsg(fcmKey, notificationModel).enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 Log.i("mkl","noti mkl");
+                if (response.body()!=null){
+                    listener.onNotificationSentSuccess(response.body());
+                }else {
+                    listener.onNotificationSentFailed("Api Error "+response.code());
+                }
             }
 
             @Override
-            public void onFailure(Call<NotificationResponse> call, Throwable t) {
+            public void onFailure(Call<JsonElement> call, Throwable t) {
                 Log.i("mkl",t.getLocalizedMessage());
+                listener.onNotificationSentFailed("Api Error "+t.getLocalizedMessage());
 
                 // MyDialog.getInstance().with(findLawyerActivity).message("error msg "+t.getMessage()).show();
 

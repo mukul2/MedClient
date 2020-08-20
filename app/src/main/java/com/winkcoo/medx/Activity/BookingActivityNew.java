@@ -203,7 +203,7 @@ public class BookingActivityNew extends AppCompatActivity implements ApiListener
         //startActivity(new Intent(this, BookingConfirmActivity.class));
         for (int i = 0; i < allDays.size(); i++) {
             if (allDays.get(i).isSelected()) {
-                selectedDate = "" + allDays.get(i).getDate() + "/" + selectedMonth +"/"+ "2019";
+                selectedDate = "" + allDays.get(i).getDate() + "/" + selectedMonth +"/"+ "2020";
 
             }else {
               //  showErrorMsg("wtf 2");

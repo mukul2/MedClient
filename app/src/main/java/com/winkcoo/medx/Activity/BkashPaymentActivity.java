@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.google.gson.JsonElement;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.Utils.MyProgressBar;
 import com.winkcoo.medx.api.Api;
@@ -136,6 +137,19 @@ public class BkashPaymentActivity extends BaseActivity {
                 startActivity(i);
                 finishAffinity();
                 MyProgressBar.dismiss();
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -178,6 +192,19 @@ public class BkashPaymentActivity extends BaseActivity {
                 Toast.makeText(context, response.getMessage(), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(context, PatientHomeActivity.class));
                 finishAffinity();
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -273,7 +300,18 @@ public class BkashPaymentActivity extends BaseActivity {
                 context.startActivity(i);
                 finish();
 
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
 
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -297,6 +335,19 @@ public class BkashPaymentActivity extends BaseActivity {
 
                 //paymentInfo
                 startActivity(i);
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -341,6 +392,19 @@ public class BkashPaymentActivity extends BaseActivity {
 
                 startActivity(new Intent(context, PatientHomeActivity.class));
                 finishAffinity();
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
@@ -393,6 +457,19 @@ public class BkashPaymentActivity extends BaseActivity {
                 intent.putExtra("paypal_id", response.getMessage());
 
                 context.startActivity(intent);
+
+                Api.getInstance().appNotification("admin", "New transaction", "New Pending Payment", "pending_payment", null, "a", new ApiListener.NotificationSentListener() {
+                    @Override
+                    public void onNotificationSentSuccess(JsonElement status) {
+
+                    }
+
+                    @Override
+                    public void onNotificationSentFailed(String msg) {
+                        //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override

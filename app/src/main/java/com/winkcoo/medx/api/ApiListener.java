@@ -1,6 +1,7 @@
 package com.winkcoo.medx.api;
 
 
+import com.google.gson.JsonElement;
 import com.winkcoo.medx.model.AllCollectionWithdraModel;
 import com.winkcoo.medx.model.AmbulanceModel;
 import com.winkcoo.medx.model.AppointmentAddResponse;
@@ -29,6 +30,7 @@ import com.winkcoo.medx.model.FetchProfileResponse;
 import com.winkcoo.medx.model.LoginResponse;
 import com.winkcoo.medx.model.MedicineModel;
 import com.winkcoo.medx.model.NoticeModel;
+import com.winkcoo.medx.model.NotificationResponse;
 import com.winkcoo.medx.model.OnlineDoctorModel;
 import com.winkcoo.medx.model.OnlineDoctorsModel;
 import com.winkcoo.medx.model.PaymentMethodsModel;
@@ -419,6 +421,12 @@ public class ApiListener {
         void onUserLoginSuccess(LoginResponse status);
 
         void onUserLoginFailed(String msg);
+    }
+
+    public interface NotificationSentListener {
+        void onNotificationSentSuccess(JsonElement status);
+
+        void onNotificationSentFailed(String msg);
     }
 
     public interface PostEducationInfoListener {

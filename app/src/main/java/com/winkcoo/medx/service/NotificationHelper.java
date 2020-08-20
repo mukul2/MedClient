@@ -16,8 +16,10 @@ import androidx.core.app.NotificationCompat;
 
 import com.winkcoo.medx.Activity.ChatListActivity;
 import com.winkcoo.medx.Activity.DrPendingActivity;
+import com.winkcoo.medx.Activity.PatientHomeActivity;
 import com.winkcoo.medx.Activity.PublicAskByPatient;
 import com.winkcoo.medx.Activity.SplashActivity;
+import com.winkcoo.medx.MainActivity;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.Utils.SessionManager;
 
@@ -82,6 +84,13 @@ public class NotificationHelper {
                     title = title;
                     break;
                 }
+                case "pending_payment": {
+                    resultIntent = new Intent(mContext, PatientHomeActivity.class);
+                    message = body;
+                    title = title;
+                    break;
+                }
+
                 default: {
                     resultIntent = new Intent(mContext, SplashActivity.class);
 
