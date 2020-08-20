@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "39444423528",
+    "firebase_url": "https://medx-36dc2.firebaseio.com",
+    "project_id": "medx-36dc2",
+    "storage_bucket": "medx-36dc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39444423528:android:0b6a3c04d2542c0c05ecdd",
+        "android_client_info": {
+          "package_name": "com.winkcoo.medx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39444423528-bjvc7pa0mihtjr8r3mh10358n3c7iok1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSZnWPdCo86kv3BU5B2YYfUR28cb5is0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39444423528-bjvc7pa0mihtjr8r3mh10358n3c7iok1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
