@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.winkcoo.medx.Data.Data.CHAMBER_TO_BOOK;
+import static com.winkcoo.medx.Data.Data.CURRENCY_USD_SIGN;
 
 /**
  * Created by mukul on 3/10/2019.
@@ -69,8 +70,8 @@ public class ChambersListAdapterDr extends RecyclerView.Adapter<ChambersListAdap
         final ChamberInfo movie = list.get(position);
         context = holder.tv_location.getContext();
         holder.tv_location.setText(movie.getAddress());
-        holder.tv_fees.setText("" + movie.getFee() + " USD");
-        holder.tv_follow_up_fees.setText("" + movie.getFollowUpFee() + " USD");
+        holder.tv_fees.setText("" + movie.getFee() + CURRENCY_USD_SIGN);
+        holder.tv_follow_up_fees.setText("" + movie.getFollowUpFee() + CURRENCY_USD_SIGN);
         if (movie.getChamberDays() != null && movie.getChamberDays().size() == 0) {
             holder.tv_sittingCount.setText("No date is added");
         } else {

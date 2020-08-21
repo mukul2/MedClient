@@ -86,7 +86,7 @@ public class VoiceCallDialActivity extends VoiceCallBaseActivity{
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(context, "started", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(context, "started", Toast.LENGTH_SHORT).show();
                             // do you work now
                             //RECEIVER_ID
                             //CALLER_ID

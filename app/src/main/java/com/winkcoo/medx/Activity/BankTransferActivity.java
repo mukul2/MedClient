@@ -130,7 +130,7 @@ public class BankTransferActivity extends BaseActivity {
         ApiListener.basicApiListener listener = new ApiListener.basicApiListener() {
             @Override
             public void onBasicSuccess(StatusMessage response) {
-                Toast.makeText(context, "ccc "+response.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, response.getMessage(), Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(getBaseContext(), PatientHomeActivity.class);
                 i.putExtra("paymentInfo", payID);
@@ -151,7 +151,7 @@ public class BankTransferActivity extends BaseActivity {
 
                     @Override
                     public void onNotificationSentFailed(String msg) {
-                      //  Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -162,6 +162,8 @@ public class BankTransferActivity extends BaseActivity {
 
             @Override
             public void onBasicApiFailed(String msg) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
                 MyProgressBar.dismiss();
 
             }

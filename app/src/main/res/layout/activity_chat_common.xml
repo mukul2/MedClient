@@ -50,7 +50,7 @@
                     android:layout_alignParentRight="true"
                     android:padding="20dp"
                     android:id="@+id/img_call"
-                    android:src="@drawable/call_answer"
+                    android:src="@drawable/video_camera"
                     android:tint="@color/colorPrimary" />
             </RelativeLayout>
 

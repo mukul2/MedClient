@@ -49,7 +49,7 @@ public class SpecialistActivity extends AppCompatActivity {
         Api.getInstance().getDepList(TOKEN, new ApiListener.DeptDownloadListener() {
             @Override
             public void onDepartmentDownloadSuccess(List<DeptModel> list) {
-                Toast.makeText(context, ""+list.size(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(context, ""+list.size(), Toast.LENGTH_SHORT).show();
                         TYPE_OF_ACTIVITY="Chambers";
 
         DepartmentsAdapter mAdapter = new DepartmentsAdapter(list);

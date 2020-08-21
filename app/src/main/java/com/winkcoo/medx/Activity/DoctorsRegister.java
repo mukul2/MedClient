@@ -80,7 +80,7 @@ public class DoctorsRegister extends AppCompatActivity {
             public void onDepartmentDownloadSuccess(List<DeptModel> list) {
 
                 initSpinner(list);
-                Toast.makeText(context, "dept size "+list.size(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, "dept size "+list.size(), Toast.LENGTH_SHORT).show();
 
             }
 
