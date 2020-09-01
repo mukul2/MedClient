@@ -31,12 +31,13 @@ public class VideoCallReqListAdapterPatient extends RecyclerView.Adapter<VideoCa
     Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_date, tv_name, tv_body, tv_lastDegree, tv_epacialist, tv_address,tv_status;
+        public TextView tv_date, tv_name, tv_body, tv_lastDegree, tv_epacialist, tv_address,tv_status,tv_time;
         ImageView img_profile,img_status;
 
 
         public MyViewHolder(View view) {
             super(view);
+            tv_time = (TextView) view.findViewById(R.id.tv_time);
             tv_date = (TextView) view.findViewById(R.id.tv_date);
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_status = (TextView) view.findViewById(R.id.tv_status);
@@ -66,7 +67,8 @@ public class VideoCallReqListAdapterPatient extends RecyclerView.Adapter<VideoCa
         final VideoAppointmentModel movie = list.get(position);
         context = holder.tv_date.getContext();
         holder.tv_name.setText(movie.getDrInfo().getName());
-        holder.tv_date.setText(movie.getCreatedAt());
+        holder.tv_date.setVisibility(View.GONE);
+        holder.tv_time.setText("Usualy Online at : "+movie.getDrInfo().getVideo_call_available_time());
         Glide.with(context).load(PHOTO_BASE+movie.getDrInfo().getPhoto()).into(holder.img_profile);
 
         if (movie.getPaymentStatus()==1) {

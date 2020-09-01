@@ -74,7 +74,6 @@ public class AddNewChamberActivity extends BaseActivity implements ApiListener.d
                         //Toast.makeText(context, day.getDayName(), Toast.LENGTH_SHORT).show();
                         list.add(list.size(), day);
                         mAdapter.notifyItemInserted(list.size() - 1);
-
                         days.add(day.getDayName());
                         startTime.add(day.getStartTime());
                         endTime.add(day.getStartTime());

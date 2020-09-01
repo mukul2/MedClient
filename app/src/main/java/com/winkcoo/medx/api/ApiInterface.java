@@ -110,6 +110,10 @@ public interface ApiInterface {
     @POST("get_user_info")
     Call<FetchProfileResponse> get_user_info(@Field("id") String key);
 
+    @FormUrlEncoded
+    @POST("update_video_call_available_time")
+    Call<StatusMessage> update_video_call_available_time(@Header("Authorization") String token,@Field("id") String key,@Field("time") String time);
+
     @POST("allBlogCategory")
     Call<List<BlogCategoryNameID>> getBlogChamber(@Header("Authorization") String token);
 
@@ -390,7 +394,7 @@ public interface ApiInterface {
                                               @Part("transID") RequestBody transID,
                                               @Part MultipartBody.Part image);
     @Multipart
-    @POST("add_payment_info_only_for_chamber_appoiontment")
+    @POST("body_only_for_chamber_appoiontment")
     Call<StatusMessage> add_payment_info_only_for_chamber_appoiontment(@Header("Authorization") String token,
                                                                        @Part("patient_id") RequestBody patient_id,
                                                                        @Part("dr_id") RequestBody dr_id,

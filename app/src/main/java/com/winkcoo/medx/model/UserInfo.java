@@ -47,7 +47,9 @@ public class UserInfo {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
-
+    @SerializedName("video_call_available_time")
+    @Expose
+    private String video_call_available_time;
     public Integer getId() {
         return id;
     }
@@ -158,5 +160,13 @@ public class UserInfo {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getVideo_call_available_time() {
+        return video_call_available_time;
+    }
+
+    public void setVideo_call_available_time(String video_call_available_time) {
+        this.video_call_available_time = video_call_available_time;
     }
 }

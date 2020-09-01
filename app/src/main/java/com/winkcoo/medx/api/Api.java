@@ -832,6 +832,23 @@ public class Api {
 
     }
 
+    public void update_video_call_available_time(String token,String id,String time, final ApiListener.basicApiListener listener) {
+        ApiClient.getApiInterface().update_video_call_available_time(token,id,time).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
+                listener.onBasicSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<StatusMessage> call, Throwable t) {
+                listener.onBasicApiFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+
     public void BlogCategoryNameID(String token, final ApiListener.BlogCategoryDownloadListener doctorSearchListener) {
         ApiClient.getApiInterface().getBlogChamber(token).enqueue(new Callback<List<BlogCategoryNameID>>() {
             @Override
