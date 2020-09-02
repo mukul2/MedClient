@@ -34,9 +34,10 @@
                 android:layout_marginLeft="00dp"
                 android:layout_marginTop="45dp"
                 android:layout_marginRight="10dp"
+                android:id="@+id/cardSearch"
                 android:layout_marginBottom="10dp"
                 app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="2dp">
+                app:cardCornerRadius="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -48,13 +49,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <EditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/white"
-                            android:textSize="13dp"
+                            android:textSize="15dp"
+                            android:gravity="center_vertical"
                             android:layout_marginRight="40dp"
-                            android:hint="Department"
+                            android:hint="Search by Name"
                             android:paddingLeft="20dp"/>
 
                         <ImageView

@@ -19,6 +19,11 @@ private String photo;
 @SerializedName("designation_title")
 @Expose
 private String designation_title;
+
+@SerializedName("video_call_available_time")
+@Expose
+private String video_call_available_time;
+
 @SerializedName("department")
 @Expose
 private Integer department;
@@ -62,7 +67,15 @@ public List<OnlineDoctorsServiceInfo> getOnlineDoctorsServiceInfo() {
 return onlineDoctorsServiceInfo;
 }
 
-public void setOnlineDoctorsServiceInfo(List<OnlineDoctorsServiceInfo> onlineDoctorsServiceInfo) {
+    public String getVideo_call_available_time() {
+        return video_call_available_time;
+    }
+
+    public void setVideo_call_available_time(String video_call_available_time) {
+        this.video_call_available_time = video_call_available_time;
+    }
+
+    public void setOnlineDoctorsServiceInfo(List<OnlineDoctorsServiceInfo> onlineDoctorsServiceInfo) {
 this.onlineDoctorsServiceInfo = onlineDoctorsServiceInfo;
 }
 

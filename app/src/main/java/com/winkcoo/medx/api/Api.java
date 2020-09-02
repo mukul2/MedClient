@@ -242,6 +242,25 @@ public class Api {
         });
     }
 
+    public void searchOnlineDoctorsName(String KEY, String name, final ApiListener.DownloadOnlineDocListener listener) {
+
+        ApiClient.getApiInterface().searchOnlineDoctorsName(KEY, name).enqueue(new Callback<List<OnlineDoctorsModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<OnlineDoctorsModel>> call, @NonNull Response<List<OnlineDoctorsModel>> response) {
+                if (response != null) {
+                    listener.onOnlineDocSearchSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<OnlineDoctorsModel>> call, @NonNull Throwable t) {
+                listener.onOnlineDocSearchFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
     public void blogsDownload(String KEY, String s, final ApiListener.BlogDownloadListener listener) {
 
         ApiClient.getApiInterface().getAllBlog(KEY, s).enqueue(new Callback<List<BlogModel>>() {

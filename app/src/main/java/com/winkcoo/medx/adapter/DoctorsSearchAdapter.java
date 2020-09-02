@@ -22,7 +22,9 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.winkcoo.medx.Data.Data.PHOTO_BASE;
+import static com.winkcoo.medx.Data.Data.TYPE_OF_ACTIVITY;
 import static com.winkcoo.medx.Data.DataStore.NOW_SHOWING_DOC;
+import static com.winkcoo.medx.Data.DataStore.NOW_SHOWING_ONLINE_DOC;
 
 /**
  * Created by mukul on 3/10/2019.
@@ -88,10 +90,12 @@ public class DoctorsSearchAdapter extends RecyclerView.Adapter<DoctorsSearchAdap
             public void onClick(View view) {
                 NOW_SHOWING_DOC = data;
                 if (data.getDepartmentModel() != null) {
+                    TYPE_OF_ACTIVITY = "ChamberDoc";
                     context.startActivity(new Intent(context, DoctorsFullProfileView.class));
                 } else {
 
                 }
+
             }
         });
         if (data.getPhoto() != null) {

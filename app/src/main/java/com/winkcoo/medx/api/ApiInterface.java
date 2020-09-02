@@ -142,6 +142,10 @@ public interface ApiInterface {
     @POST("search-online-doctors")
     Call<List<OnlineDoctorsModel>> searchOnlineDoctors(@Header("Authorization") String token,
                                                        @Field("department_id") String department_id);
+    @FormUrlEncoded
+    @POST("search_online_doctors_name")
+    Call<List<OnlineDoctorsModel>> searchOnlineDoctorsName(@Header("Authorization") String token,
+                                                       @Field("name") String name);
 
     @FormUrlEncoded
     @POST("delete_service_by_dr.php")

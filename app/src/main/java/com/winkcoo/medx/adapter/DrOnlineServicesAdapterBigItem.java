@@ -188,8 +188,14 @@ public class DrOnlineServicesAdapterBigItem extends RecyclerView.Adapter<DrOnlin
             }
         }
         if (movie.getOnlineServiceId() == 2) {
+            Toast.makeText(context, "here 1", Toast.LENGTH_SHORT).show();
+           // holder.tv_fees.setText("Usualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time());
+
             if (PatientDoctorsOnlineServiceFragment.IS_VIDEO_CALL_SUBSCRIBED) {
-                holder.tv_fees.setText("Payment Done");
+                Toast.makeText(context, "here 2", Toast.LENGTH_SHORT).show();
+
+                String timeSts = "Payment Done"+"\n"+"Usualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time();
+                holder.tv_fees.setText(timeSts);
                 holder.tv_action.setVisibility(View.GONE);
                 holder.itemView.setOnClickListener((View view) -> {
                     Intent i = new Intent(context, ChatActivityCommon.class);
@@ -199,7 +205,10 @@ public class DrOnlineServicesAdapterBigItem extends RecyclerView.Adapter<DrOnlin
                     context.startActivity(i);
                 });
             } else {
+                String timeSts =   "" + movie.getFees_per_unit() + " " + CURRENCY_USD+"\nUsualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time();
+                holder.tv_fees.setText(timeSts);
                 holder.itemView.setOnClickListener((View view) -> {
+
 
 
                     Dialog dialog_ = doForMe.showDialog(context, R.layout.choose_payment_method_dialog);

@@ -2,6 +2,7 @@ package com.winkcoo.medx.Activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +35,8 @@ import static com.winkcoo.medx.Data.DataStore.TOKEN;
 public class SpecialistActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+    @BindView(R.id.cardSearch)
+    CardView cardSearch;
 
 
     Context context = this;
@@ -63,6 +67,13 @@ public class SpecialistActivity extends AppCompatActivity {
             @Override
             public void onDepartmentDownloadFailed(String msg) {
 
+            }
+        });
+        cardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TYPE_OF_ACTIVITY="Chambers";
+                startActivity(new Intent(context,DoctorSearchActivity.class));
             }
         });
 

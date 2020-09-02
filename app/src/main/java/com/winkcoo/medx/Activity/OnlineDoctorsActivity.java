@@ -2,6 +2,7 @@ package com.winkcoo.medx.Activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,9 +34,13 @@ import static com.winkcoo.medx.Data.Data.TYPE_OF_ACTIVITY;
 import static com.winkcoo.medx.Data.DataStore.TOKEN;
 
 public class OnlineDoctorsActivity extends AppCompatActivity {
+    @BindView(R.id.cardSearch)
+    CardView cardSearch;
+
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     Context context=this;
+
    public static List<OnlineDoctorModel>DOCTORS_LIST=new ArrayList<>();
 
     @Override
@@ -63,7 +69,18 @@ public class OnlineDoctorsActivity extends AppCompatActivity {
             }
         });
 
+        cardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TYPE_OF_ACTIVITY="OnlineDoc";
+                startActivity(new Intent(context,DoctorSearchActivityOnline.class));
+            }
+        });
+
     }
+
+
+
     public  void setUpStatusbar(){
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
             setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);

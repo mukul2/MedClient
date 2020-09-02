@@ -25,7 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.BankTransferActivity"></activity>
+        <activity android:name=".Activity.DoctorSearchActivityOnline"></activity>
+        <activity android:name=".Activity.DoctorSearchActivity" />
+        <activity android:name=".Activity.BankTransferActivity" />
         <activity android:name=".Activity.BkashPaymentActivity" />
         <activity android:name=".Activity.PaymentsHistoryActivity" />
         <activity android:name=".Activity.MySubsCribedPatients" />
