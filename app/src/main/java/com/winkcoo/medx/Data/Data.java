@@ -37,6 +37,8 @@ public class Data {
     public static String CURRENCY_USD = " RS" ;
     public static String CURRENCY_USD_SIGN = " ₹" ;
     public static String PAY_PAL_CLIENT_ID = "" ;
+    public static String SELECTEDED_SLOT_DATE = "" ;
+    public static String SELECTEDED_SLOT_TIME = "" ;
 
 
     public static BottomNavigationMenuView menuView;

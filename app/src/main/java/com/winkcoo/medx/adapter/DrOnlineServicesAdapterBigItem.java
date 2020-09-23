@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.winkcoo.medx.Activity.ChatActivityCommon;
 import com.winkcoo.medx.Activity.ProjectPaypalPaymentActivity;
+import com.winkcoo.medx.Activity.VideoAppointmentSlotDate;
 import com.winkcoo.medx.Fragments.PatientDoctorsOnlineServiceFragment;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.Utils.doForMe;
@@ -192,9 +193,10 @@ public class DrOnlineServicesAdapterBigItem extends RecyclerView.Adapter<DrOnlin
            // holder.tv_fees.setText("Usualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time());
 
             if (PatientDoctorsOnlineServiceFragment.IS_VIDEO_CALL_SUBSCRIBED) {
-                Toast.makeText(context, "here 2", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, "here 2", Toast.LENGTH_SHORT).show();
 
-                String timeSts = "Payment Done"+"\n"+"Usualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time();
+             //   String timeSts = "Payment Done"+"\n"+"Usualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time();
+                String timeSts = "Payment Done";
                 holder.tv_fees.setText(timeSts);
                 holder.tv_action.setVisibility(View.GONE);
                 holder.itemView.setOnClickListener((View view) -> {
@@ -205,6 +207,18 @@ public class DrOnlineServicesAdapterBigItem extends RecyclerView.Adapter<DrOnlin
                     context.startActivity(i);
                 });
             } else {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, VideoAppointmentSlotDate.class));
+
+                    }
+                });
+            }
+
+
+               /*
+
                 String timeSts =   "" + movie.getFees_per_unit() + " " + CURRENCY_USD+"\nUsualy Available at "+NOW_SHOWING_ONLINE_DOC.getVideo_call_available_time();
                 holder.tv_fees.setText(timeSts);
                 holder.itemView.setOnClickListener((View view) -> {
@@ -229,6 +243,8 @@ public class DrOnlineServicesAdapterBigItem extends RecyclerView.Adapter<DrOnlin
                     });
                 });
             }
+
+                */
         }
         if (movie.getOnlineServiceId() == 8) {
             if (IS_1_SUBSCRIBED) {

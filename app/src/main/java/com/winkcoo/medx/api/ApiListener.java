@@ -206,6 +206,11 @@ public class ApiListener {
 
         void onAppointmentDownloadFailed(String msg);
     }
+    public interface AvailableInfoDownloadListener {
+        void onAvailableInfoDownloadSuccess(JsonElement data);
+
+        void onAvailableInfoDownloadFailed(String msg);
+    }
 
     public interface DrRecomentationDownloadListener {
         void onRecomendationDownloadSuccess(List<RecomentationModel> list);
@@ -367,6 +372,11 @@ public class ApiListener {
         void onAppointmentPOStSuccess(AppointmentAddResponse data);
 
         void onAppointmentPOStFailed(String msg);
+    }
+    public interface SlotSearchListener {
+        void onSlotSearchSuccess(List<StatusMessage> data);
+
+        void onSlotSearchFailed(String msg);
     }
 
     public interface SubscriptionViewListener {

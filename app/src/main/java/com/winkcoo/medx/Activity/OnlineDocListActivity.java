@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.adapter.OnlineDoctorsSearchAdapter;
 import com.winkcoo.medx.api.Api;
@@ -32,6 +33,8 @@ public class OnlineDocListActivity extends BaseActivity implements ApiListener.D
     RecyclerView recycler_view;
     @BindView(R.id.tv_title)
     TextView tv_title;
+    @BindView(R.id.shimmmar)
+    ShimmerFrameLayout shimmmar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,15 @@ public class OnlineDocListActivity extends BaseActivity implements ApiListener.D
 
         if (bundle != null) {
             String depID = bundle.getString("depID");
+            shimmmar.startShimmer();
             Api.getInstance().getOnLineDoctors(TOKEN, depID, this);
         }
     }
 
     @Override
     public void onOnlineDocSearchSuccess(List<OnlineDoctorsModel> status) {
+        shimmmar.stopShimmer();
+        shimmmar.setVisibility(View.GONE);
         TYPE_OF_ACTIVITY = "OnlineDoc";
         OnlineDoctorsSearchAdapter mAdapter = new OnlineDoctorsSearchAdapter(status);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);

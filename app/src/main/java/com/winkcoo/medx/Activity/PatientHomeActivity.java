@@ -26,6 +26,8 @@ import com.bumptech.glide.Glide;
 import com.winkcoo.medx.Fragments.AppointmentsFragment;
 import com.winkcoo.medx.Fragments.BlogFragmentPatient;
 import com.winkcoo.medx.Fragments.HomeFragment;
+import com.winkcoo.medx.Fragments.HomeFragmentAlternativeMedX;
+import com.winkcoo.medx.Fragments.MyVdoAppFragment;
 import com.winkcoo.medx.Fragments.NotificationFragmentPatient;
 import com.winkcoo.medx.Fragments.ProfileFragment;
 import com.winkcoo.medx.R;
@@ -235,10 +237,13 @@ public class PatientHomeActivity extends VoiceCallBaseActivity implements ApiLis
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "TWO");
-        adapter.addFragment(new NotificationFragmentPatient(), "TWO");
+        adapter.addFragment(new HomeFragmentAlternativeMedX(), "TWO");
+       // adapter.addFragment(new NotificationFragmentPatient(), "TWO");
+        adapter.addFragment(new MyVdoAppFragment(), "TWO");
         adapter.addFragment(new ProfileFragment(), "ONE");
-        adapter.addFragment(new AppointmentsFragment(), "ONE");
+       // adapter.addFragment(new AppointmentsFragment(), "ONE");
+         adapter.addFragment(new NotificationFragmentPatient(), "TWO");
+
         adapter.addFragment(new BlogFragmentPatient(), "ONE");
 
         viewPager.setAdapter(adapter);
@@ -410,6 +415,10 @@ public class PatientHomeActivity extends VoiceCallBaseActivity implements ApiLis
         sesMan.setLoggedIn(false);
         startActivity(new Intent(this, LoginActivity.class));
         finishAffinity();
+    }
+    public void DoctorSearchActivityOnline(View view) {
+
+        startActivity(new Intent(this, DoctorSearchActivityOnline.class));
     }
 
     public void click_1(View view) {

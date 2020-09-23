@@ -112,7 +112,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("update_video_call_available_time")
-    Call<StatusMessage> update_video_call_available_time(@Header("Authorization") String token,@Field("id") String key,@Field("time") String time);
+    Call<StatusMessage> update_video_call_available_time(@Header("Authorization") String token, @Field("id") String key, @Field("time") String time);
 
     @POST("allBlogCategory")
     Call<List<BlogCategoryNameID>> getBlogChamber(@Header("Authorization") String token);
@@ -121,6 +121,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("patient_all_confirmed.php")
     Call<List<AppointmentModel>> getPatientAllConfirmed(@Field("patient_id") String patient_id);
+
+    @FormUrlEncoded
+    @POST("get_video_call_available_time")
+    Call<JsonElement> get_video_call_available_time(@Header("Authorization") String token,@Field("id") String id);
 
     @FormUrlEncoded
     @POST("all-blog-info")
@@ -142,10 +146,11 @@ public interface ApiInterface {
     @POST("search-online-doctors")
     Call<List<OnlineDoctorsModel>> searchOnlineDoctors(@Header("Authorization") String token,
                                                        @Field("department_id") String department_id);
+
     @FormUrlEncoded
     @POST("search_online_doctors_name")
     Call<List<OnlineDoctorsModel>> searchOnlineDoctorsName(@Header("Authorization") String token,
-                                                       @Field("name") String name);
+                                                           @Field("name") String name);
 
     @FormUrlEncoded
     @POST("delete_service_by_dr.php")
@@ -282,6 +287,14 @@ public interface ApiInterface {
                                                     @Field("date") String date,
                                                     @Field("status") String status);
 
+    @FormUrlEncoded
+    @POST("get_vdo_appointment_slot")
+    Call<List<StatusMessage>> get_vdo_appointment_slot(@Header("Authorization") String token,
+                                                       @Field("dr_id") String dr_id,
+                                                       @Field("patient_id") String patient_id,
+                                                       @Field("date") String date,
+                                                       @Field("day") String day);
+
     @Multipart
     @POST("add_video_appointment_info")
     Call<AppointmentAddResponse> addVideoAppointmentInfo(@Header("Authorization") String token,
@@ -290,7 +303,7 @@ public interface ApiInterface {
                                                          @Part("payment_details") RequestBody payment_details,
                                                          @Part("payment_status") RequestBody payment_status,
                                                          @Part("amount") RequestBody amount,
-                                                         @Part MultipartBody.Part image);
+                                                         @Part MultipartBody.Part image, @Part("date") RequestBody date, @Part("time") RequestBody time);
 
     @FormUrlEncoded
     @POST("get-appointment-list")
@@ -373,7 +386,8 @@ public interface ApiInterface {
     @POST("get_video_appointment_list")
     Call<List<VideoAppointmentModel>> get_video_appointment_list(@Header("Authorization") String token,
                                                                  @Field("user_type") String user_type,
-                                                                 @Field("id") String uid);
+                                                                 @Field("id") String uid,
+                                                                 @Field("date") String date);
 
     @FormUrlEncoded
     @POST("add-prescription-recheck-request")
@@ -397,6 +411,7 @@ public interface ApiInterface {
                                               @Part("reason") RequestBody reason,
                                               @Part("transID") RequestBody transID,
                                               @Part MultipartBody.Part image);
+
     @Multipart
     @POST("body_only_for_chamber_appoiontment")
     Call<StatusMessage> add_payment_info_only_for_chamber_appoiontment(@Header("Authorization") String token,

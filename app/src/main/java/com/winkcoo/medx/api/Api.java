@@ -66,6 +66,7 @@ import com.winkcoo.medx.model.VideoCallModel;
 
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -73,6 +74,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.winkcoo.medx.Data.Data.SELECTEDED_SLOT_DATE;
+import static com.winkcoo.medx.Data.Data.SELECTEDED_SLOT_TIME;
 
 /**
  * Created By TAOHID on 9/6/18.
@@ -643,6 +647,25 @@ public class Api {
         });
     }
 
+    public void get_video_call_available_time(String token,String id, final ApiListener.AvailableInfoDownloadListener listener) {
+
+        ApiClient.getApiInterface().get_video_call_available_time(token,id).enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(@NonNull Call<JsonElement> call, @NonNull Response<JsonElement> response) {
+                if (response != null) {
+                    listener.onAvailableInfoDownloadSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonElement> call, @NonNull Throwable t) {
+                listener.onAvailableInfoDownloadFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
     public void downlaodPaPending(String id, final ApiListener.CommonappointmentDownloadListener listener) {
 
         ApiClient.getApiInterface().getPatientAllPending(id).enqueue(new Callback<List<AppointmentModel>>() {
@@ -953,8 +976,34 @@ public class Api {
 
     }
 
+    public void get_vdo_appointment_slot(String token, String dr_id, String patient_id, String date, String day, final ApiListener.SlotSearchListener listener) {
+        ApiClient.getApiInterface().get_vdo_appointment_slot(token, dr_id, patient_id, date,day).enqueue(new Callback<List<StatusMessage>>() {
+            @Override
+            public void onResponse(Call<List<StatusMessage>> call, Response<List<StatusMessage>> response) {
+               if (response.isSuccessful() && response.body() !=null) {
+                   listener.onSlotSearchSuccess(response.body());
+               }else {
+                   listener.onSlotSearchFailed("API ERROR");
+
+               }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<StatusMessage>> call, Throwable t) {
+                listener.onSlotSearchFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+    private RequestBody c_m_b(String aThis) {
+        return
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), aThis);
+    }
     public void addVideoAppointmentInfo(String token, RequestBody p_id, RequestBody dr_id, RequestBody payment_details, RequestBody payment_status, RequestBody amount, MultipartBody.Part image,final ApiListener.AppointmentPOstListener listener) {
-        ApiClient.getApiInterface().addVideoAppointmentInfo(token, p_id, dr_id, payment_details, payment_status, amount,image).enqueue(new Callback<AppointmentAddResponse>() {
+        ApiClient.getApiInterface().addVideoAppointmentInfo(token, p_id, dr_id, payment_details, payment_status, amount,image,c_m_b(SELECTEDED_SLOT_DATE),c_m_b(SELECTEDED_SLOT_TIME)).enqueue(new Callback<AppointmentAddResponse>() {
             @Override
             public void onResponse(Call<AppointmentAddResponse> call, Response<AppointmentAddResponse> response) {
                 listener.onAppointmentPOStSuccess(response.body());
@@ -1229,9 +1278,9 @@ public class Api {
         });
     }
 
-    public void get_video_appointment_list(String token, String user_type, String uid, final ApiListener.VideoCallReqListDownlaodListener listener) {
+    public void get_video_appointment_list(String token, String user_type, String uid,String date, final ApiListener.VideoCallReqListDownlaodListener listener) {
 
-        ApiClient.getApiInterface().get_video_appointment_list(token, user_type, uid).enqueue(new Callback<List<VideoAppointmentModel>>() {
+        ApiClient.getApiInterface().get_video_appointment_list(token, user_type, uid,date).enqueue(new Callback<List<VideoAppointmentModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<VideoAppointmentModel>> call, @NonNull Response<List<VideoAppointmentModel>> response) {
                 if (response != null) {

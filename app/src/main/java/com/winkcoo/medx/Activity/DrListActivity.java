@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.adapter.DoctorsSearchAdapter;
 import com.winkcoo.medx.api.Api;
@@ -33,6 +34,8 @@ import static com.winkcoo.medx.Data.Data.TYPE_OF_ACTIVITY;
 import static com.winkcoo.medx.Data.DataStore.TOKEN;
 
 public class DrListActivity extends AppCompatActivity implements ApiListener.DocSearchListener {
+    @BindView(R.id.shimmmar)
+    ShimmerFrameLayout shimmmar;
     @BindView(R.id.tv_title)
     TextView tv_title;
     @BindView(R.id.recycler_view)
@@ -51,6 +54,7 @@ public class DrListActivity extends AppCompatActivity implements ApiListener.Doc
         if(bundle != null){
            int depID = bundle.getInt("depID");
             Toast.makeText(context, ""+depID, Toast.LENGTH_SHORT).show();
+            shimmmar.startShimmer();
             Api.getInstance().searchDoctors(TOKEN,null,""+depID,this );
         }
 
@@ -101,6 +105,7 @@ public class DrListActivity extends AppCompatActivity implements ApiListener.Doc
 
     @Override
     public void onDocSearchSuccess(List<SearchDoctorModel> list) {
+        shimmmar.hideShimmer();
         TYPE_OF_ACTIVITY="ChamberDoc";
         DoctorsSearchAdapter mAdapter = new DoctorsSearchAdapter(list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);

@@ -26,6 +26,7 @@ import com.winkcoo.medx.Activity.DrPendingActivity;
 import com.winkcoo.medx.Activity.DrPrescriptionListActivity;
 import com.winkcoo.medx.Activity.LoginActivity;
 import com.winkcoo.medx.Activity.MySubsCribedPatients;
+import com.winkcoo.medx.Activity.OnlineAppointmentsTabsActivity;
 import com.winkcoo.medx.Activity.PatientPersonalInfoActivity;
 import com.winkcoo.medx.Activity.PaymentsHistoryActivity;
 import com.winkcoo.medx.Activity.RecheckActivityDr;
@@ -165,7 +166,8 @@ public class HomeFragmentDr extends Fragment {
         linerVideoCallRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, VideoCallAppointmentList.class));
+               // startActivity(new Intent(context, VideoCallAppointmentList.class));
+                startActivity(new Intent(context, OnlineAppointmentsTabsActivity.class));
             }
         });
 //DrPrescriptionListActivity

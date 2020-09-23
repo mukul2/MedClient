@@ -79,6 +79,7 @@ public class SettingFragmentDr extends Fragment implements ApiListener.drChamber
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new OnlineFragmentDr(), "Online Services");
         adapter.addFragment(new DrDocumentsFragment(), "Documents");
+        adapter.addFragment(new OnlineTimesScheduleFragment(), "Online Schedule");
 
 
         viewPager.setAdapter(adapter);

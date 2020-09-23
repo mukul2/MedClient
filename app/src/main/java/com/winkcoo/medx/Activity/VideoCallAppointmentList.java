@@ -57,7 +57,7 @@ public class VideoCallAppointmentList extends BaseActivity implements ApiListene
         ButterKnife.bind(this);
 
         if (USER_TYPE.equals("d")) {
-            Api.getInstance().get_video_appointment_list(TOKEN, "doctor", USER_ID, this);
+            Api.getInstance().get_video_appointment_list(TOKEN, "doctor", USER_ID, "",this);
             cardTime.setVisibility(View.VISIBLE);
             Api.getInstance().get_user_info(USER_ID, new ApiListener.profileFetchListener() {
                 @Override
@@ -121,6 +121,7 @@ public class VideoCallAppointmentList extends BaseActivity implements ApiListene
                                             Toast.makeText(VideoCallAppointmentList.this, ""+hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
 
                                             tv_time_.setText(hourOfDay + ":" + minute);
+
                                             time = hourOfDay + ":" + minute;
                                             //tv_time.setText(hourOfDay + ":" + minute);
                                         }
@@ -135,7 +136,7 @@ public class VideoCallAppointmentList extends BaseActivity implements ApiListene
             });
 
         } else {
-            Api.getInstance().get_video_appointment_list(TOKEN, "patient", USER_ID, this);
+            Api.getInstance().get_video_appointment_list(TOKEN, "patient", USER_ID, "",this);
             cardTime.setVisibility(View.GONE);
 
 

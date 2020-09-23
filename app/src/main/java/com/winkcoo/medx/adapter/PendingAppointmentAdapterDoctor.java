@@ -2,6 +2,7 @@ package com.winkcoo.medx.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +118,8 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
                                         //now post
                                         MyProgressBar.with(context);
                                         Gson gson = new Gson();
+                                        Log.i("mkl",gson.toJson(ids));
+                                        Toast.makeText(context, gson.toJson(ids), Toast.LENGTH_LONG).show();
                                         Api.getInstance().addTestRec(TOKEN, "" + movie.getId(), gson.toJson(ids), new ApiListener.addTestRecListener() {
                                             @Override
                                             public void onAddTestRecSuccess(StatusMessage status) {

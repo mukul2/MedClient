@@ -15,10 +15,17 @@ import com.winkcoo.medx.Activity.ChatActivityCommon;
 import com.winkcoo.medx.R;
 import com.winkcoo.medx.model.VideoAppointmentModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static com.winkcoo.medx.Data.Data.PHOTO_BASE;
+import static com.winkcoo.medx.Data.DataStore.convertToWeekDay;
 
 /**
  * Created by mukul on 3/10/2019.
@@ -32,7 +39,8 @@ public class VideoCallReqListAdapterPatient extends RecyclerView.Adapter<VideoCa
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_date, tv_name, tv_body, tv_lastDegree, tv_epacialist, tv_address,tv_status,tv_time;
-        ImageView img_profile,img_status;
+        ImageView CircleImageView;
+        ImageView img_status;
 
 
         public MyViewHolder(View view) {
@@ -41,7 +49,7 @@ public class VideoCallReqListAdapterPatient extends RecyclerView.Adapter<VideoCa
             tv_date = (TextView) view.findViewById(R.id.tv_date);
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_status = (TextView) view.findViewById(R.id.tv_status);
-            img_profile = (ImageView) view.findViewById(R.id.img_profile);
+            CircleImageView = (CircleImageView) view.findViewById(R.id.img_profile);
             img_status = (ImageView) view.findViewById(R.id.img_status);
 
 
@@ -68,8 +76,20 @@ public class VideoCallReqListAdapterPatient extends RecyclerView.Adapter<VideoCa
         context = holder.tv_date.getContext();
         holder.tv_name.setText(movie.getDrInfo().getName());
         holder.tv_date.setVisibility(View.GONE);
-        holder.tv_time.setText("Usualy Online at : "+movie.getDrInfo().getVideo_call_available_time());
-        Glide.with(context).load(PHOTO_BASE+movie.getDrInfo().getPhoto()).into(holder.img_profile);
+        Glide.with(context).load(PHOTO_BASE+movie.getDrInfo().getPhoto()).into(holder.CircleImageView);
+        String dates = "";
+        try {
+            JSONArray array= new JSONArray(movie.getDrInfo().getVideo_call_available_time());
+            for (int i = 0;i<array.length();i++){
+                JSONObject object = array.getJSONObject(i);
+                if(object.getString("status").equals("1")) dates  +=convertToWeekDay(object.getString("day"))+ " at "+object.getString("starts")+"\n";
+            }
+            holder.tv_time.setText(dates);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (movie.getPaymentStatus()==1) {
             holder.tv_status.setText("Send a Message");

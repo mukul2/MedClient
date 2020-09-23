@@ -25,7 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DoctorSearchActivityOnline"></activity>
+        <activity android:name=".Activity.OnlineAppointmentsTabsActivity"></activity>
+        <activity android:name=".Activity.ConfirmVideoCallAppointment" />
+        <activity android:name=".Activity.VideoAppointmentSlotDate" />
+        <activity android:name=".Activity.DoctorSearchActivityOnline" />
         <activity android:name=".Activity.DoctorSearchActivity" />
         <activity android:name=".Activity.BankTransferActivity" />
         <activity android:name=".Activity.BkashPaymentActivity" />

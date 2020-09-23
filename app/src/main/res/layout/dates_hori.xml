@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="horizontal"
+    android:padding="10dp"
+
+    app:cardCornerRadius="1dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="15dp"
+            android:id="@+id/img"
+            android:tint="@color/colorPrimary"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/calender_gray"
+            android:layout_marginLeft="20dp"
+            android:layout_height="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="start"
+            android:paddingLeft="20dp"
+            android:text="Name"
+            android:lines="1"
+            android:textColor="@color/colorPrimary"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
